@@ -1,32 +1,31 @@
 name: Build and Deploy Angular App
 
-# 当推送到 master 分支时触发工作流
 on:
   push:
     branches:
-      - master  # 你可以根据需要修改分支名称
+      - master
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # 使用最新的 Ubuntu 作为运行环境
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3  # 从 GitHub 仓库中拉取代码
+      uses: actions/checkout@v3
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18.x'  # 设置 Node.js 版本，18.x 是当前的 LTS 版本
+        node-version: '20.x'  # 使用最新的 Node.js 20
 
     - name: Install dependencies
-      run: npm install  # 安装项目依赖
+      run: npm install
 
     - name: Build Angular app
-      run: npm run build --prod  # 构建 Angular 项目
+      run: npm run build --prod
 
     - name: Upload production-ready build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: build-artifacts
-        path: frontend/dist  # 构建输出的目录，根据实际项目目录调整
+        path: frontend/dist
