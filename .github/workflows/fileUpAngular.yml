@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: frontend  # 这里指定了工作目录
+        working-directory: frontend
 
     steps:
     - name: Checkout code
@@ -23,12 +23,15 @@ jobs:
         node-version: '22'
 
     - name: Install dependencies
-      run: npm install  # 安装依赖
+      run: npm install
 
     - name: Build project
-      run: npm run build --prod  # 运行构建
+      run: npm run build --prod
 
-   - name: Deploy to GitHub Pages
+    - name: Create .nojekyll file
+      run: echo > dist/frontend/.nojekyll  # 确保路径正确
+
+    - name: Deploy to GitHub Pages
       if: github.ref == 'refs/heads/master'
       run: npx angular-cli-ghpages --dir=dist/frontend
       env:
