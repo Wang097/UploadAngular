@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend  # 这里指定了工作目录
 
     steps:
     - name: Checkout code
@@ -17,10 +20,10 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '20'  # 确保使用 Node.js 20
+        node-version: '22'
 
     - name: Install dependencies
-      run: npm install
+      run: npm install  # 安装依赖
 
     - name: Build project
-      run: npm run build --prod
+      run: npm run build --prod  # 运行构建
