@@ -1,0 +1,59 @@
+# Node modules
+node_modules/
+
+# Angular cache
+.angular/
+
+# VS Code settings (if they are user-specific)
+.vscode/
+
+# Compiled output
+dist/
+out-tsc/
+
+# Build artifacts
+build/
+target/
+
+# Temporary files and logs
+tmp/
+temp/
+logs/
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE specific files
+.idea/
+*.iml
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Angular specific
+coverage/
+*.seed
+*.nyc_output
+reports/
+
+# Environment variable files
+.env
+.env.*
+!.env.example
+
+# Ignore any kind of backup files
+*.bak
+*.orig
+*~
+
+# TypeScript
+*.tsbuildinfo
+
+# Compiled JS files
+*.js
+*.d.ts
+*.map

@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpEventType } from '@angular/common/http';  // 导入 HttpClient 和 HttpEventType
+import { CommonModule } from '@angular/common';  // 导入 CommonModule
 
 @Component({
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.css'],
   standalone: true,  // 确保 standalone 属性设置为 true
+  imports: [CommonModule]  // 将 CommonModule 添加到 imports 数组中
 })
 export class FileUploadComponent {
   selectedFile: File | null = null;
