@@ -1,9 +1,10 @@
-name: Build and Deploy Angular App
+name: CI
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build:
@@ -16,16 +17,10 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '20.x'  # 使用最新的 Node.js 20
+        node-version: '20'  # 将 Node.js 版本设置为 20
 
     - name: Install dependencies
       run: npm install
 
-    - name: Build Angular app
+    - name: Build project
       run: npm run build --prod
-
-    - name: Upload production-ready build artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: build-artifacts
-        path: frontend/dist
