@@ -45,6 +45,6 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: github-pages
-        path: dist/frontend/**  # 使用通配符确保所有文件被上传
+        path: dist/frontend/**/*  # 包括所有子目录和文件
 
 
