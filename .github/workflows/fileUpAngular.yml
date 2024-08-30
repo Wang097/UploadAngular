@@ -27,3 +27,9 @@ jobs:
 
     - name: Build project
       run: npm run build --prod  # 运行构建
+
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/master'  # 仅在推送到 master 分支时部署
+      run: npx angular-cli-ghpages --dir=dist/your-project-name  # 部署到 GitHub Pages
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
