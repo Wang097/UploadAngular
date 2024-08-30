@@ -4,6 +4,7 @@ phases:
   install:
     commands:
       - echo Installing NPM dependencies...
+      - cd frontend  # 切换到 frontend 目录
       - npm install
   build:
     commands:
@@ -16,4 +17,4 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: dist/frontend  # 指定构建产物目录
+  base-directory: frontend/dist/frontend  # 指定构建产物目录
