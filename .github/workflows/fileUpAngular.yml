@@ -7,8 +7,8 @@ on:
     branches: [ master ]
 
 permissions:
-  id-token: write
-  contents: read
+  id-token: write  # 获取 OIDC 令牌所需
+  contents: read   # 读取仓库内容所需
 
 jobs:
   build:
@@ -32,14 +32,17 @@ jobs:
     - name: Build project
       run: npm run build --prod  # 构建项目
 
-    - name: List build directory  # 调试步骤，检查 dist 目录是否生成
-      run: ls -la dist/frontend
+    - name: List root directory after build
+      run: ls -la  # 列出根目录的内容，确认构建是否成功
+
+    - name: List dist directory after build
+      run: ls -la dist  # 列出 dist 目录的内容，确认 dist 目录是否生成
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: github-pages
-        path: dist/frontend
+        path: dist/frontend  # 确保路径与实际生成的构建产物路径一致
 
   deploy:
     runs-on: ubuntu-latest
@@ -51,10 +54,10 @@ jobs:
     - name: Download build artifacts
       uses: actions/download-artifact@v3
       with:
-        name: github-pages
+        name: github-pages  # 确保名称与上传时一致
 
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
       with:
-        path: dist/frontend
+        path: dist/frontend  # 部署的路径应该与构建产物路径一致
