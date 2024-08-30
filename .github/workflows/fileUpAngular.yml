@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: frontend
+        working-directory: frontend  # 确保工作目录正确
 
     steps:
     - name: Checkout code
@@ -20,19 +20,22 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '22'
+        node-version: '22'  # 使用 Node.js 22 版本
 
     - name: Install dependencies
-      run: npm install
+      run: npm install  # 安装依赖
 
     - name: Build project
-      run: npm run build --prod
+      run: npm run build --prod  # 构建项目
 
-    - name: Create .nojekyll file
-      run: echo > dist/frontend/.nojekyll  # 确保路径正确
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-output
+        path: dist/frontend  # 将构建产物上传为 Artifact
 
     - name: Deploy to GitHub Pages
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/master'  # 仅在推送到 master 分支时部署
       run: npx angular-cli-ghpages --dir=dist/frontend
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub 提供的令牌进行部署
