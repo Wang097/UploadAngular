@@ -45,7 +45,7 @@ jobs:
     - name: Download build artifacts
       uses: actions/download-artifact@v3
       with:
-        name: github-pages  # 下载构建产物的名称
+        name: github-pages  # 确保名称与上传时一致
 
     - name: Deploy to GitHub Pages
       id: deployment
