@@ -7,15 +7,15 @@ on:
     branches: [ master ]
 
 permissions:
-  id-token: write  # 获取 OIDC 令牌所需
-  contents: read   # 读取仓库内容所需
+  id-token: write
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: frontend  # 确保工作目录正确
+        working-directory: frontend
 
     steps:
     - name: Checkout code
@@ -24,27 +24,27 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '22'  # 使用 Node.js 22 版本
+        node-version: '22'
 
     - name: Install dependencies
-      run: npm install  # 安装依赖
+      run: npm install
 
     - name: Build project
-      run: npm run build --prod  # 构建项目
+      run: npm run build --prod
 
     - name: List root directory after build
-      run: ls -la  # 列出根目录的内容，确认构建是否成功
+      run: ls -la
 
     - name: List dist directory after build
-      run: ls -la dist  # 列出 dist 目录的内容，确认 dist 目录是否生成
+      run: ls -la dist
 
     - name: List project build directory after build
-      run: ls -la dist/frontend  # 列出 dist/frontend 目录的内容
+      run: ls -la dist/frontend
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: github-pages
-        path: dist/frontend  # 上传构建产物的路径
+        path: dist/frontend/**  # 使用通配符确保所有文件被上传
 
 
