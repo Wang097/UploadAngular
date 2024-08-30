@@ -34,8 +34,14 @@ jobs:
         name: build-output
         path: dist/frontend  # 将构建产物上传为 Artifact
 
-    - name: Deploy to GitHub Pages
-      if: github.ref == 'refs/heads/master'  # 仅在推送到 master 分支时部署
-      run: npx angular-cli-ghpages --dir=dist/frontend
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub 提供的令牌进行部署
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
