@@ -36,7 +36,7 @@ jobs:
         git config --global user.name "Wang097"
         git config --global user.email "sunalan097@gmail.com"
         npm install -g gh-pages
-        git remote set-url origin https://<GITHUB_TOKEN>@github.com/yourusername/yourrepository.git
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com@github.com/Wang097/UploadAngular.git
         gh-pages -d dist/frontend
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
