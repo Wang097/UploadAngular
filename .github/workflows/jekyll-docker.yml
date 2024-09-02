@@ -5,18 +5,25 @@ on:
     branches:
       - master # 你可以根据需要更改为其他分支
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend  # 设置工作目录为 frontend
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Setup Node.js
+    - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '22'  # 确保使用与你项目兼容的 Node.js 版本
+        node-version: '22'
 
     - name: Install dependencies
       run: npm install
