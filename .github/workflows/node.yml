@@ -36,7 +36,7 @@ jobs:
       run: ls -la dist/frontend
 
     - name: List files in browser
-       run: ls -la dist/frontend/browser
+      run: ls -la dist/frontend/browser
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v3
