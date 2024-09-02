@@ -35,11 +35,14 @@ jobs:
     - name: List files in dist/frontend
       run: ls -la dist/frontend
 
-    - name: Upload build artifacts
+    - name: List files in browser
+       run: ls -la dist/frontend/browser
+
+    - name: Upload Build Artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: github-pages
-        path: dist/frontend/**/*  # 上传所有子目录和文件
+        name: frontend-artifacts
+        path: dist/frontend/**
 
   deploy:
     runs-on: ubuntu-latest
