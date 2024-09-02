@@ -32,11 +32,8 @@ jobs:
     - name: Build project
       run: npm run build --prod
 
-    - name: List root directory after build
-      run: ls -la  # 列出工作目录下的所有文件
-
-    - name: List dist directory after build
-      run: ls -la dist  # 列出 dist 目录的内容
+    - name: List files in dist/frontend
+      run: ls -la dist/frontend
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
