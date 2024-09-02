@@ -31,14 +31,12 @@ jobs:
     - name: Build project
       run: npm run build --prod
 
-    - name: Setup Git user
+    - name: Deploy
       run: |
         git config --global user.name "Wang097"
         git config --global user.email "sunalan097@gmail.com"
-
-    - name: Deploy to GitHub Pages
-      run: |
         npm install -g gh-pages
-        npm run deploy
+        git remote set-url origin https://<GITHUB_TOKEN>@github.com/yourusername/yourrepository.git
+        gh-pages -d dist/frontend
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub 提供的自动化 token
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
