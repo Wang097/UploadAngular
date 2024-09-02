@@ -33,7 +33,7 @@ jobs:
 
     - name: Build project
       run: |
-        ng build --prod --base-href "/UploadAngular/"  # 这里设置 base href
+         ng build --configuration=production --base-href "/UploadAngular/"  # 这里设置 base href
 
     - name: Deploy
       run: |
